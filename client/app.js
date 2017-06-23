@@ -30,5 +30,10 @@ angular.module('Instagram', ['ngRoute', 'ngMessages'])
 			scopeDelimiter: '+',
 			authorizationEndpoint: 'https://api.instagram.com/oauth/authorize'
 		});
+    .run(function($rootScope, $window, $auth) {
+    if ($auth.isAuthenticated()) {
+        $rootScope.currentUser = JSON.parse($window.localStorage.currentUser);
+    }
+    });
 
 	});
